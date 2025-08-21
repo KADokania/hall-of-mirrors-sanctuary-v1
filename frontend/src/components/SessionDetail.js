@@ -260,11 +260,16 @@ export const SessionDetail = () => {
                     
                     {entry.reflection.tone && entry.reflection.tone.length > 0 && (
                       <div className="mt-4 pt-3 border-t border-purple-200">
+                        <div className="mb-2">
+                          <ToneConstellationInfo>
+                            <span className="text-whisper text-xs">Reflection Tones</span>
+                          </ToneConstellationInfo>
+                        </div>
                         <div className="flex flex-wrap gap-1">
                           {entry.reflection.tone.map((tag, tagIndex) => (
                             <span
                               key={tagIndex}
-                              className={`px-2 py-1 rounded-full text-xs ${getToneColor(tag)}`}
+                              className={`px-2 py-1 rounded-full text-xs gentle-hover ${getToneColor(tag)}`}
                             >
                               {tag}
                             </span>
