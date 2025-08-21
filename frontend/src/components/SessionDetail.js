@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Calendar, Sparkles, BookOpen, Heart } from 'lucide-react';
 import { Storage } from '../storage/database';
 import { BLOOMS_DATA } from '../data/blooms';
+import { ToneConstellationInfo, ArchetypeInfo } from './InfoTooltip';
 
 export const SessionDetail = () => {
   const { sessionId } = useParams();
