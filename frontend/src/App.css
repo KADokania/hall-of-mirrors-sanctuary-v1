@@ -19,63 +19,81 @@ body {
   width: 100%;
 }
 
-/* Sanctuary color palette */
+/* Enhanced Sanctuary color palette */
 :root {
   --cream-base: #fefcf8;
   --cream-warm: #f7f4f0;
+  --cream-soft: #f9f7f4;
   --deep-blue: #1e3a8a;
   --soft-blue: #7dd3fc;
   --warm-pink: #f472b6;
   --gentle-purple: #a855f7;
+  --sky-blue: #0ea5e9;
   --text-primary: #2d2a26;
   --text-secondary: #6b6662;
   --text-whisper: #9ca3af;
+  --sanctuary-glow: rgba(125, 211, 252, 0.15);
+  --whisper-glow: rgba(244, 114, 182, 0.1);
 }
 
-/* Typography scales */
+/* Typography scales with improved hierarchy */
 .text-whisper {
   font-weight: 300;
   color: var(--text-whisper);
-  opacity: 0.8;
+  opacity: 0.85;
+  letter-spacing: 0.02em;
 }
 
 .text-prompt {
   font-weight: 400;
   color: var(--text-secondary);
+  line-height: 1.7;
 }
 
 .text-presence {
   font-weight: 500;
   color: var(--text-primary);
+  letter-spacing: -0.01em;
 }
 
 .text-archetype {
   font-weight: 600;
   color: var(--deep-blue);
+  letter-spacing: -0.02em;
 }
 
-/* Gentle animations */
+/* Enhanced gentle animations */
 .fade-in {
-  animation: fadeIn 0.6s ease-out forwards;
+  animation: fadeIn 0.8s ease-out forwards;
 }
 
 .slide-up {
-  animation: slideUp 0.4s ease-out forwards;
+  animation: slideUp 0.5s ease-out forwards;
 }
 
 .breathe {
-  animation: breathe 4s ease-in-out infinite;
+  animation: breathe 6s ease-in-out infinite;
+}
+
+.constellation-float {
+  animation: constellationFloat 8s ease-in-out infinite;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from { 
+    opacity: 0; 
+    transform: translateY(12px);
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0);
+  }
 }
 
 @keyframes slideUp {
   from { 
     opacity: 0; 
-    transform: translateY(20px); 
+    transform: translateY(24px); 
   }
   to { 
     opacity: 1; 
@@ -84,36 +102,96 @@ body {
 }
 
 @keyframes breathe {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.02); }
+  0%, 100% { 
+    transform: scale(1) rotate(0deg);
+    filter: brightness(1);
+  }
+  50% { 
+    transform: scale(1.02) rotate(0.5deg);
+    filter: brightness(1.05);
+  }
 }
 
-/* Gentle interaction states */
+@keyframes constellationFloat {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% { 
+    transform: translateY(-4px) rotate(1deg);
+  }
+  66% { 
+    transform: translateY(2px) rotate(-0.5deg);
+  }
+}
+
+/* Enhanced gentle interaction states */
 .gentle-hover {
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
 }
 
 .gentle-hover:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.05);
+  transform: translateY(-3px);
+  filter: brightness(1.08);
 }
 
-/* Button styles */
+.gentle-hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, var(--sanctuary-glow), transparent);
+  transition: left 0.6s ease-in-out;
+}
+
+.gentle-hover:hover::before {
+  left: 100%;
+}
+
+/* Enhanced button styles with ripple effects */
 .sanctuary-button {
   background: linear-gradient(135deg, var(--soft-blue) 0%, var(--deep-blue) 100%);
   color: white;
   border: none;
-  border-radius: 24px;
-  padding: 12px 28px;
+  border-radius: 28px;
+  padding: 14px 32px;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   font-family: inherit;
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.01em;
+}
+
+.sanctuary-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.sanctuary-button:hover::before {
+  width: 300px;
+  height: 300px;
 }
 
 .sanctuary-button:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 8px 25px rgba(30, 58, 138, 0.3);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 35px rgba(30, 58, 138, 0.4);
+}
+
+.sanctuary-button:active {
+  transform: translateY(0) scale(0.98);
 }
 
 .sanctuary-button:disabled {
@@ -122,77 +200,195 @@ body {
   transform: none;
 }
 
-/* Text areas and inputs */
+.sanctuary-button:disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* Enhanced text areas and inputs */
 .sanctuary-input {
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.9);
   border: 2px solid transparent;
-  border-radius: 16px;
-  padding: 16px 20px;
+  border-radius: 20px;
+  padding: 18px 24px;
   font-family: inherit;
   font-size: 16px;
   color: var(--text-primary);
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   resize: vertical;
-  min-height: 120px;
+  min-height: 140px;
   width: 100%;
+  backdrop-filter: blur(8px);
+  line-height: 1.6;
 }
 
 .sanctuary-input:focus {
   outline: none;
   border-color: var(--soft-blue);
-  background: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 4px 20px rgba(125, 211, 252, 0.2);
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 8px 32px var(--sanctuary-glow);
+  transform: translateY(-1px);
 }
 
 .sanctuary-input::placeholder {
   color: var(--text-whisper);
   font-style: italic;
+  font-weight: 300;
 }
 
-/* Card components */
+/* Enhanced card components */
 .sanctuary-card {
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(12px);
-  border-radius: 20px;
-  padding: 32px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  border-radius: 24px;
+  padding: 36px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
 }
 
-/* Archive constellation styling */
+.sanctuary-card:hover {
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+/* Enhanced constellation Archive styling */
 .constellation-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
-  padding: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 28px;
+  padding: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .constellation-item {
-  background: rgba(255, 255, 255, 0.4);
-  border-radius: 16px;
-  padding: 20px;
-  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 24px;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  position: relative;
+  overflow: hidden;
+}
+
+.constellation-item::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, var(--whisper-glow) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.constellation-item:hover::before {
+  opacity: 1;
 }
 
 .constellation-item:hover {
-  background: rgba(255, 255, 255, 0.7);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.8);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+/* Progress indicators with glow */
+.progress-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  transition: all 0.4s ease;
+  position: relative;
+}
+
+.progress-dot.active {
+  background: var(--soft-blue);
+  box-shadow: 0 0 12px var(--sanctuary-glow);
+}
+
+.progress-dot.inactive {
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(125, 211, 252, 0.3);
+}
+
+/* Enhanced unlock notification */
+.unlock-notification {
+  background: linear-gradient(135deg, var(--gentle-purple), var(--warm-pink));
+  color: white;
+  padding: 16px 24px;
+  border-radius: 16px;
+  margin-bottom: 24px;
+  text-align: center;
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
+}
+
+.unlock-notification::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* Mirror response styling */
+.mirror-response {
+  background: linear-gradient(135deg, rgba(125, 211, 252, 0.1) 0%, rgba(168, 85, 247, 0.08) 100%);
+  border: 1px solid rgba(125, 211, 252, 0.2);
+  border-radius: 20px;
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+}
+
+.mirror-response::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--soft-blue), var(--gentle-purple), var(--warm-pink));
+  animation: breathe 4s ease-in-out infinite;
 }
 
 /* Responsive design */
 @media (max-width: 768px) {
   .sanctuary-card {
-    padding: 24px;
+    padding: 28px 24px;
     margin: 16px;
+    border-radius: 20px;
   }
   
   .constellation-grid {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 20px;
     padding: 16px;
+  }
+  
+  .sanctuary-button {
+    padding: 12px 24px;
+    border-radius: 24px;
+  }
+  
+  .sanctuary-input {
+    padding: 16px 20px;
+    border-radius: 16px;
   }
 }
 
@@ -213,8 +409,37 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Selection colors */
+/* Enhanced selection colors */
 ::selection {
   background: rgba(125, 211, 252, 0.3);
   color: var(--text-primary);
+}
+
+/* Loading states */
+.loading-shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Archetype presence styling */
+.archetype-presence {
+  background: linear-gradient(135deg, var(--deep-blue), var(--gentle-purple));
+  color: white;
+  padding: 24px;
+  border-radius: 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.archetype-presence::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  animation: constellationFloat 10s ease-in-out infinite;
 }
