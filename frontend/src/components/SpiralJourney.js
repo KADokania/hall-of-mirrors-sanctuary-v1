@@ -37,7 +37,7 @@ export const SpiralJourney = () => {
     try {
       const sessionData = await llmProvider.createSession(totalSessions);
       const sessionId = await Storage.saveSession({
-        id: sessionData.id,
+        uuid: sessionData.id,  // Store the backend UUID separately
         startedAt: new Date().toISOString(),
         blooms_unlocked: sessionData.blooms_unlocked,
         total_sessions: sessionData.total_sessions,
@@ -46,8 +46,8 @@ export const SpiralJourney = () => {
       });
       
       setSessionData({ 
-        id: sessionData.id,  
-        dbId: sessionId,
+        id: sessionData.id,  // Backend UUID for LLM calls
+        dbId: sessionId,     // IndexedDB auto-increment ID for local storage
         toneTags: [],
         blooms_unlocked: sessionData.blooms_unlocked
       });
