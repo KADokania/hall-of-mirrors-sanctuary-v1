@@ -4,10 +4,25 @@ export class HallDatabase extends Dexie {
   constructor() {
     super('HallOfMirrorsDB');
     
+    // Version 1: Original schema
     this.version(1).stores({
+      sessions: '++id, startedAt, completedAt, toneTags, archetypeId',
+      reflections: '++id, sessionId, petal, text, tone, createdAt',
+      journalEntries: '++id, sessionId, petal, content, createdAt'
+    });
+    
+    // Version 2: Add UUID field for session consistency
+    this.version(2).stores({
       sessions: '++id, uuid, startedAt, completedAt, toneTags, archetypeId',
       reflections: '++id, sessionId, petal, text, tone, createdAt',
       journalEntries: '++id, sessionId, petal, content, createdAt'
+    }).upgrade(tx => {
+      // Migration: existing sessions get a placeholder UUID
+      return tx.sessions.toCollection().modify(session => {
+        if (!session.uuid) {
+          session.uuid = session.id?.toString() || Date.now().toString();
+        }
+      });
     });
   }
 }
