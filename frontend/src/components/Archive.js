@@ -269,23 +269,20 @@ export const Archive = () => {
                     {session.archetypeId && (
                       <div className="mb-4 p-3 rounded-lg bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-100">
                         <div className="flex items-center justify-between">
-                          <ArchetypeInfo>
-                            <span className="text-archetype text-sm font-medium flex items-center gap-2">
-                              <Star className="w-3 h-3" />
-                              {getArchetypeName(session.archetypeId)}
-                            </span>
-                          </ArchetypeInfo>
+                          <span className="text-archetype text-sm font-medium flex items-center gap-2">
+                            <Star className="w-3 h-3" />
+                            {getArchetypeName(session.archetypeId)}
+                          </span>
                         </div>
                       </div>
                     )}
                     
-                    {/* Tone constellation */}
+                    {/* Tone constellation preview */}
                     {session.toneTags && session.toneTags.length > 0 && (
                       <div>
-                        <div className="mb-2">
-                          <ToneConstellationInfo>
-                            <span className="text-whisper text-xs">Tone Constellation</span>
-                          </ToneConstellationInfo>
+                        <div className="mb-2 flex items-center gap-2">
+                          <Sparkles className="w-3 h-3 text-purple-400" />
+                          <span className="text-whisper text-xs font-medium">Tone Constellation</span>
                         </div>
                         <div className="flex flex-wrap gap-2">
                           {session.toneTags.slice(0, 4).map((tag, tagIndex) => (
