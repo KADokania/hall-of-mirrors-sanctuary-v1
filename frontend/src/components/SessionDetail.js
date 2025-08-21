@@ -271,12 +271,11 @@ export const SessionDetail = () => {
                     
                     {entry.reflection.tone && entry.reflection.tone.length > 0 && (
                       <div className="mt-4 pt-3 border-t border-purple-200">
-                        <div className="mb-2">
-                          <ToneConstellationInfo>
-                            <span className="text-whisper text-xs">Reflection Tones</span>
-                          </ToneConstellationInfo>
+                        <div className="mb-2 flex items-center gap-2">
+                          <Sparkles className="w-3 h-3 text-purple-400" />
+                          <span className="text-whisper text-xs font-medium">Reflection Tones</span>
                         </div>
-                        <div className="flex flex-wrap gap-1">
+                        <div className="flex flex-wrap gap-2">
                           {entry.reflection.tone.map((tag, tagIndex) => (
                             <span
                               key={tagIndex}
