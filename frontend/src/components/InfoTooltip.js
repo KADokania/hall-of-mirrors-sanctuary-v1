@@ -105,7 +105,7 @@ export const ToneConstellationInfo = ({ children }) => (
 export const ArchetypeInfo = ({ children }) => (
   <InfoTooltip
     title="Archetype Mirror"
-    content="The Archetype is a living presence reflected back to you. If you see an Archetype, it means that quality is strong in you. If you see "Emerging," it means this Archetype is just beginning to rise — an invitation to notice and nurture it."
+    content='The Archetype is a living presence reflected back to you. If you see an Archetype, it means that quality is strong in you. If you see "Emerging," it means this Archetype is just beginning to rise — an invitation to notice and nurture it.'
   >
     {children}
   </InfoTooltip>
