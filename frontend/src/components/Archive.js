@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, Calendar, Sparkles, Trash2, RefreshCw, Star, Heart } from 'lucide-react';
 import { Storage } from '../storage/database';
 import { useProgressiveUnlock } from '../hooks/useProgressiveUnlock';
+import { ToneConstellationInfo, ArchetypeInfo } from './InfoTooltip';
 
 export const Archive = () => {
   const navigate = useNavigate();
