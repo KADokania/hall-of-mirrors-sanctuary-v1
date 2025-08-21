@@ -21,15 +21,25 @@ export const SessionDetail = () => {
     try {
       setIsLoading(true);
       
-      const [sessionData, reflectionsData, journalData] = await Promise.all([
-        Storage.getSession(parseInt(sessionId)),
-        Storage.getReflectionsBySession(parseInt(sessionId)),
-        Storage.getJournalEntriesBySession(parseInt(sessionId))
-      ]);
+      // Try to get session by IndexedDB ID (auto-increment)
+      let sessionData = await Storage.getSession(parseInt(sessionId));
       
-      setSession(sessionData);
-      setReflections(reflectionsData);
-      setJournalEntries(journalData);
+      // If not found by ID, try to find by UUID (for backwards compatibility)
+      if (!sessionData) {
+        const allSessions = await Storage.getSessions();
+        sessionData = allSessions.find(s => s.uuid === sessionId || s.id === sessionId);
+      }
+      
+      if (sessionData) {
+        const [reflectionsData, journalData] = await Promise.all([
+          Storage.getReflectionsBySession(sessionData.id), // Use the IndexedDB ID for relations
+          Storage.getJournalEntriesBySession(sessionData.id)
+        ]);
+        
+        setSession(sessionData);
+        setReflections(reflectionsData);
+        setJournalEntries(journalData);
+      }
       
     } catch (error) {
       console.error('Failed to load session data:', error);
