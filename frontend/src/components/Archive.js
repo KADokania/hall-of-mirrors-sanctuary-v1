@@ -268,29 +268,40 @@ export const Archive = () => {
                     {/* Archetype presence */}
                     {session.archetypeId && (
                       <div className="mb-4 p-3 rounded-lg bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-100">
-                        <span className="text-archetype text-sm font-medium flex items-center gap-2">
-                          <Star className="w-3 h-3" />
-                          {getArchetypeName(session.archetypeId)}
-                        </span>
+                        <div className="flex items-center justify-between">
+                          <ArchetypeInfo>
+                            <span className="text-archetype text-sm font-medium flex items-center gap-2">
+                              <Star className="w-3 h-3" />
+                              {getArchetypeName(session.archetypeId)}
+                            </span>
+                          </ArchetypeInfo>
+                        </div>
                       </div>
                     )}
                     
                     {/* Tone constellation */}
                     {session.toneTags && session.toneTags.length > 0 && (
-                      <div className="flex flex-wrap gap-2">
-                        {session.toneTags.slice(0, 4).map((tag, tagIndex) => (
-                          <span
-                            key={tagIndex}
-                            className={`px-3 py-1 rounded-full text-xs font-medium border ${getToneColor(tag, true)}`}
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                        {session.toneTags.length > 4 && (
-                          <span className="text-whisper text-xs px-3 py-1 rounded-full bg-gray-50 border border-gray-200">
-                            +{session.toneTags.length - 4} more
-                          </span>
-                        )}
+                      <div>
+                        <div className="mb-2">
+                          <ToneConstellationInfo>
+                            <span className="text-whisper text-xs">Tone Constellation</span>
+                          </ToneConstellationInfo>
+                        </div>
+                        <div className="flex flex-wrap gap-2">
+                          {session.toneTags.slice(0, 4).map((tag, tagIndex) => (
+                            <span
+                              key={tagIndex}
+                              className={`px-3 py-1 rounded-full text-xs font-medium border gentle-hover ${getToneColor(tag, true)}`}
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                          {session.toneTags.length > 4 && (
+                            <span className="text-whisper text-xs px-3 py-1 rounded-full bg-gray-50 border border-gray-200">
+                              +{session.toneTags.length - 4} more
+                            </span>
+                          )}
+                        </div>
                       </div>
                     )}
                   </div>
