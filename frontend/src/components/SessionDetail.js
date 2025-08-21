@@ -162,12 +162,12 @@ export const SessionDetail = () => {
           <div className="w-24"></div> {/* Spacer */}
         </div>
 
-        {/* Session overview */}
+        {/* Refined session overview */}
         <div className="sanctuary-card mb-8 fade-in">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="session-overview-grid">
             
-            <div className="text-center">
-              <Calendar className="w-6 h-6 text-blue-400 mx-auto mb-2" />
+            <div className="session-overview-item">
+              <Calendar className="w-6 h-6 text-blue-400 mb-2" />
               <p className="text-whisper text-sm">Duration</p>
               <p className="text-presence">
                 {session.completedAt ? (
@@ -178,43 +178,54 @@ export const SessionDetail = () => {
               </p>
             </div>
             
-            <div className="text-center">
-              <Sparkles className="w-6 h-6 text-purple-400 mx-auto mb-2" />
+            <div className="session-overview-item">
+              <Sparkles className="w-6 h-6 text-purple-400 mb-2" />
               <p className="text-whisper text-sm">Blooms Explored</p>
               <p className="text-presence">
                 {combinedEntries.length} of {BLOOMS_DATA.length}
               </p>
             </div>
             
-            <div className="text-center">
-              <BookOpen className="w-6 h-6 text-pink-400 mx-auto mb-2" />
-              <ArchetypeInfo>
-                <p className="text-whisper text-sm">Archetype</p>
-              </ArchetypeInfo>
+            <div className="session-overview-item">
+              <BookOpen className="w-6 h-6 text-pink-400 mb-2" />
+              <p className="text-whisper text-sm">Archetype</p>
               <p className="text-presence">
                 {session.archetypeId ? getArchetypeName(session.archetypeId) : 'Emerging'}
               </p>
             </div>
           </div>
-          
-          {/* Tone constellation */}
-          {session.toneTags && session.toneTags.length > 0 && (
-            <div className="mt-6 pt-6 border-t border-gray-200">
-              <div className="mb-3">
-                <ToneConstellationInfo>
-                  <span className="text-whisper text-sm">Tone Constellation</span>
-                </ToneConstellationInfo>
+
+          {/* Contained Archetype explanation */}
+          {session.archetypeId && (
+            <div className="archetype-container">
+              <div className="archetype-presence-text">
+                <Star className="w-4 h-4 inline mr-2" />
+                {getArchetypeName(session.archetypeId)}
               </div>
-              <div className="flex flex-wrap gap-2">
+              <ArchetypeCard />
+            </div>
+          )}
+
+          {/* Contained Tone constellation */}
+          {session.toneTags && session.toneTags.length > 0 && (
+            <div className="tone-constellation-container">
+              <div className="tone-constellation-header">
+                <Sparkles className="w-4 h-4 text-purple-400" />
+                <span className="text-archetype text-sm font-medium">Tone Constellation</span>
+              </div>
+              
+              <div className="tone-tags-grid">
                 {session.toneTags.map((tag, index) => (
                   <span
                     key={index}
-                    className={`px-3 py-1 rounded-full text-sm border gentle-hover ${getToneColor(tag)}`}
+                    className={`px-3 py-2 rounded-full text-sm font-medium border gentle-hover ${getToneColor(tag)}`}
                   >
                     {tag}
                   </span>
                 ))}
               </div>
+              
+              <ToneConstellationCard />
             </div>
           )}
         </div>
