@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Calendar, Sparkles, BookOpen, Heart } from 'lucide-react';
+import { ArrowLeft, Calendar, Sparkles, BookOpen, Heart, Star } from 'lucide-react';
 import { Storage } from '../storage/database';
 import { BLOOMS_DATA } from '../data/blooms';
-import { ToneConstellationInfo, ArchetypeInfo } from './InfoTooltip';
+import { ToneConstellationCard, ArchetypeCard } from './InfoCard';
 
 export const SessionDetail = () => {
   const { sessionId } = useParams();
