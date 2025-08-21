@@ -197,15 +197,19 @@ export const SessionDetail = () => {
             </div>
           </div>
           
-          {/* Tone tags */}
+          {/* Tone constellation */}
           {session.toneTags && session.toneTags.length > 0 && (
             <div className="mt-6 pt-6 border-t border-gray-200">
-              <p className="text-whisper text-sm mb-3">Tone Constellation</p>
+              <div className="mb-3">
+                <ToneConstellationInfo>
+                  <span className="text-whisper text-sm">Tone Constellation</span>
+                </ToneConstellationInfo>
+              </div>
               <div className="flex flex-wrap gap-2">
                 {session.toneTags.map((tag, index) => (
                   <span
                     key={index}
-                    className={`px-3 py-1 rounded-full text-sm border ${getToneColor(tag)}`}
+                    className={`px-3 py-1 rounded-full text-sm border gentle-hover ${getToneColor(tag)}`}
                   >
                     {tag}
                   </span>
