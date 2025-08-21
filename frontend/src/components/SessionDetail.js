@@ -188,7 +188,9 @@ export const SessionDetail = () => {
             
             <div className="text-center">
               <BookOpen className="w-6 h-6 text-pink-400 mx-auto mb-2" />
-              <p className="text-whisper text-sm">Archetype</p>
+              <ArchetypeInfo>
+                <p className="text-whisper text-sm">Archetype</p>
+              </ArchetypeInfo>
               <p className="text-presence">
                 {session.archetypeId ? getArchetypeName(session.archetypeId) : 'Emerging'}
               </p>
