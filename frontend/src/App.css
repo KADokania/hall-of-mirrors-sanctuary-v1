@@ -1,34 +1,220 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: linear-gradient(135deg, #fefcf8 0%, #f7f4f0 100%);
+  min-height: 100vh;
+  color: #2d2a26;
+  line-height: 1.6;
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+.App {
+  min-height: 100vh;
+  width: 100%;
 }
 
-.App-link {
-    color: #61dafb;
+/* Sanctuary color palette */
+:root {
+  --cream-base: #fefcf8;
+  --cream-warm: #f7f4f0;
+  --deep-blue: #1e3a8a;
+  --soft-blue: #7dd3fc;
+  --warm-pink: #f472b6;
+  --gentle-purple: #a855f7;
+  --text-primary: #2d2a26;
+  --text-secondary: #6b6662;
+  --text-whisper: #9ca3af;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+/* Typography scales */
+.text-whisper {
+  font-weight: 300;
+  color: var(--text-whisper);
+  opacity: 0.8;
+}
+
+.text-prompt {
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+
+.text-presence {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.text-archetype {
+  font-weight: 600;
+  color: var(--deep-blue);
+}
+
+/* Gentle animations */
+.fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.slide-up {
+  animation: slideUp 0.4s ease-out forwards;
+}
+
+.breathe {
+  animation: breathe 4s ease-in-out infinite;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+/* Gentle interaction states */
+.gentle-hover {
+  transition: all 0.3s ease;
+}
+
+.gentle-hover:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+}
+
+/* Button styles */
+.sanctuary-button {
+  background: linear-gradient(135deg, var(--soft-blue) 0%, var(--deep-blue) 100%);
+  color: white;
+  border: none;
+  border-radius: 24px;
+  padding: 12px 28px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.sanctuary-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 25px rgba(30, 58, 138, 0.3);
+}
+
+.sanctuary-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Text areas and inputs */
+.sanctuary-input {
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid transparent;
+  border-radius: 16px;
+  padding: 16px 20px;
+  font-family: inherit;
+  font-size: 16px;
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+  resize: vertical;
+  min-height: 120px;
+  width: 100%;
+}
+
+.sanctuary-input:focus {
+  outline: none;
+  border-color: var(--soft-blue);
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 4px 20px rgba(125, 211, 252, 0.2);
+}
+
+.sanctuary-input::placeholder {
+  color: var(--text-whisper);
+  font-style: italic;
+}
+
+/* Card components */
+.sanctuary-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+/* Archive constellation styling */
+.constellation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  padding: 20px;
+}
+
+.constellation-item {
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 16px;
+  padding: 20px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.constellation-item:hover {
+  background: rgba(255, 255, 255, 0.7);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .sanctuary-card {
+    padding: 24px;
+    margin: 16px;
+  }
+  
+  .constellation-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 16px;
+  }
+}
+
+/* Remove default focus outlines and add custom ones */
+*:focus {
+  outline: none;
+}
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--soft-blue);
+  outline-offset: 2px;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection colors */
+::selection {
+  background: rgba(125, 211, 252, 0.3);
+  color: var(--text-primary);
 }
