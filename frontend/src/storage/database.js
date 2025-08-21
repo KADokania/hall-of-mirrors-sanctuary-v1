@@ -5,7 +5,7 @@ export class HallDatabase extends Dexie {
     super('HallOfMirrorsDB');
     
     this.version(1).stores({
-      sessions: '++id, startedAt, completedAt, toneTags, archetypeId',
+      sessions: '++id, uuid, startedAt, completedAt, toneTags, archetypeId',
       reflections: '++id, sessionId, petal, text, tone, createdAt',
       journalEntries: '++id, sessionId, petal, content, createdAt'
     });
